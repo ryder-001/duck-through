@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>钻门大冒险</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #f5f0e8;
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+            touch-action: none;
+            user-select: none;
+        }
+        #gameContainer { position: relative; width: 100vw; height: 100vh; }
+        canvas { display: block; }
+        .overlay {
+            position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            background: rgba(255,255,255,0.92);
+            color: #333; z-index: 10;
+        }
+        .overlay h1 { font-size: 2.5em; margin-bottom: 20px; color: #e67e22; }
+        .overlay p { font-size: 1.1em; margin-bottom: 8px; text-align: center; color: #555; }
+        .overlay .btn {
+            margin-top: 20px; padding: 15px 40px;
+            font-size: 1.3em; background: #e67e22;
+            color: #fff; border: none; border-radius: 10px;
+            cursor: pointer; font-weight: bold;
+        }
+        .overlay .btn:hover { background: #d35400; }
+        .score-display { color: #e67e22; font-size: 1.8em; margin: 10px 0; }
+        .hidden { display: none !important; }
+        .hint { color: #999; font-size: 0.9em; margin-top: 15px; }
+    </style>
+</head>
+<body>
+<div id="gameContainer">
+    <canvas id="gameCanvas"></canvas>
+    <div class="overlay" id="startScreen">
+        <h1>钻门大冒险</h1>
+        <p>爸爸扛着儿子穿过一个个房间</p>
+        <p>门洞太矮，赶紧让儿子低头！</p>
+        <p class="hint">按住屏幕 或 空格键 = 儿子低头</p>
+        <button class="btn" id="startBtn">开始冒险</button>
+    </div>
+    <div class="overlay hidden" id="gameOverScreen">
+        <h1>撞到门框了！</h1>
+        <p class="score-display">得分：<span id="finalScore">0</span></p>
+        <p>最高纪录：<span id="highScore">0</span></p>
+        <button class="btn" id="restartBtn">再来一次</button>
+    </div>
+</div>
+<script src="game.js"></script>
+</body>
+</html>
