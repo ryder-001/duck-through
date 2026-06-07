@@ -9,14 +9,16 @@ export function updateStamina() {
     if (state.stamina <= 0) {
       state.stamina = 0;
       state.isDuck = false;
+      state.staminaLocked = true; // 锁定，必须松手才能再低头
       state.staminaEmpty = true;
       state.staminaWarningT = 90;
       sndStaminaOut();
     }
   } else {
-    // 松开就立即回满
+    // 松开就立即回满并解锁
     state.stamina = MAX_STAMINA;
-    if (state.staminaEmpty && state.stamina >= MAX_STAMINA) {
+    state.staminaLocked = false;
+    if (state.staminaEmpty) {
       state.staminaEmpty = false;
     }
   }

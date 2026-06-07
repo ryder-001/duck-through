@@ -5,7 +5,7 @@ export function setupInput(canvas) {
   document.addEventListener('keydown', e => {
     if (e.code === 'Space' && state.running) {
       e.preventDefault();
-      if (state.stamina > 0) state.isDuck = true;
+      if (state.stamina > 0 && !state.staminaLocked) state.isDuck = true;
     }
   });
 
@@ -18,7 +18,7 @@ export function setupInput(canvas) {
 
   canvas.addEventListener('mousedown', e => {
     e.preventDefault();
-    if (state.running && state.stamina > 0) state.isDuck = true;
+    if (state.running && state.stamina > 0 && !state.staminaLocked) state.isDuck = true;
   });
 
   canvas.addEventListener('mouseup', e => {
@@ -30,7 +30,7 @@ export function setupInput(canvas) {
 
   canvas.addEventListener('touchstart', e => {
     e.preventDefault();
-    if (state.running && state.stamina > 0) state.isDuck = true;
+    if (state.running && state.stamina > 0 && !state.staminaLocked) state.isDuck = true;
   }, { passive: false });
 
   canvas.addEventListener('touchend', e => {

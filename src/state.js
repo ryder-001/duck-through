@@ -25,6 +25,7 @@ export const state = {
   // 体力条
   stamina: MAX_STAMINA,
   staminaEmpty: false,   // 是否刚耗尽（用于成就检测）
+  staminaLocked: false,  // 体力耗尽后锁定，必须松手才能解锁
   staminaWarningT: 0,    // 警告文字显示计时
 
   // 关卡剧情
