@@ -1,0 +1,25 @@
+{
+  "name": "smartgame",
+  "version": "1.0.0",
+  "description": "一款适合小朋友玩的亲子互动小游戏。爸爸驮着孩子穿过家里的各个房间，遇到矮门洞时儿子要赶紧低头！",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryder-001/duck-through.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ryder-001/duck-through/issues"
+  },
+  "homepage": "https://github.com/ryder-001/duck-through#readme",
+  "devDependencies": {
+    "vite": "^8.0.16"
+  }
+}
