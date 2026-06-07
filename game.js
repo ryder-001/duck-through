@@ -186,19 +186,8 @@ function drawChar(){
   ctx.beginPath();ctx.moveTo(cx-22,bodyTop+18);ctx.quadraticCurveTo(cx-32,bodyTop+40,cx-18,bodyTop+55);ctx.stroke();
   ctx.beginPath();ctx.moveTo(cx+22,bodyTop+18);ctx.quadraticCurveTo(cx+32,bodyTop+40,cx+18,bodyTop+55);ctx.stroke();
   ctx.fillStyle='#f0ba8a';ctx.beginPath();ctx.arc(cx-18,bodyTop+55,5,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.arc(cx+18,bodyTop+55,5,0,Math.PI*2);ctx.fill();
-  // 脖子
-  ctx.fillStyle='#f0ba8a';ctx.fillRect(cx-6,bodyTop-10,12,15);
-  // 头
-  let headY=bodyTop-28;
-  ctx.fillStyle='#f0ba8a';ctx.beginPath();ctx.arc(cx,headY,18,0,Math.PI*2);ctx.fill();
-  ctx.fillStyle='#2c2014';ctx.beginPath();ctx.arc(cx,headY-4,18,Math.PI,2*Math.PI);ctx.fill();ctx.fillRect(cx-16,headY-8,32,8);
-  ctx.fillStyle='#e8a878';ctx.beginPath();ctx.ellipse(cx-17,headY+2,5,7,0,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.ellipse(cx+17,headY+2,5,7,0,0,Math.PI*2);ctx.fill();
-  ctx.fillStyle='#333';ctx.beginPath();ctx.arc(cx-6,headY+2,3,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.arc(cx+6,headY+2,3,0,Math.PI*2);ctx.fill();
-  ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(cx-5,headY+1,1.2,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.arc(cx+7,headY+1,1.2,0,Math.PI*2);ctx.fill();
-  ctx.strokeStyle='#2c2014';ctx.lineWidth=2.5;ctx.beginPath();ctx.moveTo(cx-10,headY-4);ctx.lineTo(cx-3,headY-5);ctx.stroke();ctx.beginPath();ctx.moveTo(cx+3,headY-5);ctx.lineTo(cx+10,headY-4);ctx.stroke();
-  ctx.fillStyle='#e0a070';ctx.beginPath();ctx.moveTo(cx,headY+4);ctx.lineTo(cx-3,headY+10);ctx.lineTo(cx+3,headY+10);ctx.fill();
-  ctx.strokeStyle='#a06040';ctx.lineWidth=2;ctx.beginPath();ctx.arc(cx,headY+13,6,0.15*Math.PI,0.85*Math.PI);ctx.stroke();
-  // === 儿子 ===
+
+  // === 儿子整体(在爸爸头后面，先画) ===
   let shoulderY=bodyTop-5;
   // 儿子腿(骑跨)
   ctx.fillStyle='#3d6b3d';ctx.fillRect(cx-16,shoulderY,9,28);ctx.fillRect(cx+7,shoulderY,9,28);
@@ -217,19 +206,27 @@ function drawChar(){
   ctx.fillStyle='#f0ba8a';
   if(isDuck){ctx.beginPath();ctx.ellipse(cx,sHY,13,10,0,0,Math.PI*2);ctx.fill();}
   else{ctx.beginPath();ctx.arc(cx,sHY,14,0,Math.PI*2);ctx.fill();}
-  // 头发
   ctx.fillStyle='#5c3317';
   if(isDuck){ctx.beginPath();ctx.ellipse(cx,sHY-5,12,7,0,Math.PI,2*Math.PI);ctx.fill();}
   else{ctx.beginPath();ctx.arc(cx,sHY-5,14,Math.PI,2*Math.PI);ctx.fill();ctx.fillRect(cx-12,sHY-10,24,6);ctx.strokeStyle='#5c3317';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(cx-2,sHY-14);ctx.quadraticCurveTo(cx,sHY-24,cx+5,sHY-20);ctx.stroke();}
-  // 耳朵
   if(!isDuck){ctx.fillStyle='#e8a878';ctx.beginPath();ctx.ellipse(cx-13,sHY+1,4,5,0,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.ellipse(cx+13,sHY+1,4,5,0,0,Math.PI*2);ctx.fill();}
-  // 眼睛
   if(isDuck){ctx.strokeStyle='#333';ctx.lineWidth=2.5;ctx.beginPath();ctx.moveTo(cx-6,sHY);ctx.lineTo(cx-2,sHY+1);ctx.stroke();ctx.beginPath();ctx.moveTo(cx+2,sHY);ctx.lineTo(cx+6,sHY+1);ctx.stroke();}
   else{ctx.fillStyle='#333';ctx.beginPath();ctx.arc(cx-5,sHY+1,3,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.arc(cx+5,sHY+1,3,0,Math.PI*2);ctx.fill();ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(cx-4,sHY,1.2,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.arc(cx+6,sHY,1.2,0,Math.PI*2);ctx.fill();ctx.fillStyle='rgba(255,120,120,0.3)';ctx.beginPath();ctx.arc(cx-9,sHY+5,5,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.arc(cx+9,sHY+5,5,0,Math.PI*2);ctx.fill();}
-  // 嘴
   ctx.strokeStyle=isDuck?'#666':'#a06040';ctx.lineWidth=1.8;
   if(isDuck){ctx.beginPath();ctx.moveTo(cx-4,sHY+6);ctx.lineTo(cx+4,sHY+5);ctx.stroke();}
   else{ctx.beginPath();ctx.arc(cx,sHY+6,5,0.1*Math.PI,0.9*Math.PI);ctx.stroke();}
+
+  // === 爸爸头(最后画，在最前面，不被遮挡) ===
+  ctx.fillStyle='#f0ba8a';ctx.fillRect(cx-6,bodyTop-10,12,15);
+  let headY=bodyTop-28;
+  ctx.fillStyle='#f0ba8a';ctx.beginPath();ctx.arc(cx,headY,18,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle='#2c2014';ctx.beginPath();ctx.arc(cx,headY-4,18,Math.PI,2*Math.PI);ctx.fill();ctx.fillRect(cx-16,headY-8,32,8);
+  ctx.fillStyle='#e8a878';ctx.beginPath();ctx.ellipse(cx-17,headY+2,5,7,0,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.ellipse(cx+17,headY+2,5,7,0,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle='#333';ctx.beginPath();ctx.arc(cx-6,headY+2,3,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.arc(cx+6,headY+2,3,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(cx-5,headY+1,1.2,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.arc(cx+7,headY+1,1.2,0,Math.PI*2);ctx.fill();
+  ctx.strokeStyle='#2c2014';ctx.lineWidth=2.5;ctx.beginPath();ctx.moveTo(cx-10,headY-4);ctx.lineTo(cx-3,headY-5);ctx.stroke();ctx.beginPath();ctx.moveTo(cx+3,headY-5);ctx.lineTo(cx+10,headY-4);ctx.stroke();
+  ctx.fillStyle='#e0a070';ctx.beginPath();ctx.moveTo(cx,headY+4);ctx.lineTo(cx-3,headY+10);ctx.lineTo(cx+3,headY+10);ctx.fill();
+  ctx.strokeStyle='#a06040';ctx.lineWidth=2;ctx.beginPath();ctx.arc(cx,headY+13,6,0.15*Math.PI,0.85*Math.PI);ctx.stroke();
 }
 
 // === HUD ===
